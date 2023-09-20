@@ -28,4 +28,3 @@ res = pd.DataFrame(np.array(res).T)
 res.index = lag
 res.columns = items
 res.to_excel('result.xlsx')
-
