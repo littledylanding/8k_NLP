@@ -30,6 +30,7 @@ async def process_job(job, window):
     df.columns = ['Date', 'Close']
     df['Ticker'] = ticker
     df = df[['Date', 'Ticker', 'Close']]
+    df['Report Date'] = date
     return df
 
 
@@ -42,8 +43,9 @@ async def get_price(tickers, dates, window):
         data = pd.concat([data, temp_data], ignore_index=True)
     return data
 
-
+'''
 tickers = ['MSFT', 'AAPL']
 dates = ['2023-08-13', '2022-07-18']
 window = 10
 print(asyncio.run(get_price(tickers, dates, window)))
+'''
