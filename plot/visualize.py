@@ -5,7 +5,7 @@ import numpy as np
 
 def plot_mean_ret(data, items):
     for item in items:
-        temp_data = data[data['section'] == item].groupby(['company', 'fillingdate'])['close']
+        temp_data = data[data['Section'] == item].groupby(['Ticker', 'Filing Date'])['Close']
         pct_changes = temp_data.apply(lambda x: x.pct_change().dropna())
         means = []
         max_len = max(pct_changes.groupby(level=[0, 1]).apply(len))
@@ -16,12 +16,12 @@ def plot_mean_ret(data, items):
             means.append(nth_values.mean())
 
         plt.plot(x, means, label='Mean Daily Return', linestyle='-', linewidth=1.5)
-        plt.axvline(mid, color='grey', linestyle='--', linewidth=0.5)  # Vertical line at middle x-point
-        plt.scatter(mid, means[mid], color='red')  # Mark the middle x-point in red
-
+        plt.axvline(0, color='grey', linestyle='--', linewidth=0.5)  # Vertical line at middle x-point
+        plt.scatter(0, means[mid-2], color='red')  # Mark the middle x-point in red
+        plt.xticks(x, x)
         plt.xlabel('Time', fontsize=14)
-        plt.ylabel('Mean Percentage Change', fontsize=14)
-        plt.title('Mean of Daily Return of item {}'.format(item), fontsize=16)
+        plt.ylabel('Return', fontsize=14)
+        plt.title('Mean of Daily Return of Item {}'.format(item), fontsize=16)
         plt.grid(True, which='both', linestyle='--', linewidth=0.5)
         plt.tight_layout()
         plt.savefig('{}.jpg'.format(item))
@@ -29,8 +29,8 @@ def plot_mean_ret(data, items):
     return
 
 
-data = pd.read_csv('data.csv')
-data['section'] = data['section'].str.split(',')
-data = data.explode('section', ignore_index=True)
-items = []
+data = pd.read_csv('C:\\Users\\jiaqi\\Desktop\\8k_NLP\\8k_with_prices.csv')
+data['Section'] = data['Section'].str.split(',')
+data = data.explode('Section', ignore_index=True)
+items = ['3.02', '8.01']
 plot_mean_ret(data, items)
