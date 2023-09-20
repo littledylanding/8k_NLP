@@ -30,7 +30,7 @@ async def process_job(job, window):
     df.columns = ['Date', 'Close']
     df['Ticker'] = ticker
     df = df[['Date', 'Ticker', 'Close']]
-    df['Report Date'] = date
+    df['Filing Date'] = date
     return df
 
 
@@ -43,9 +43,18 @@ async def get_price(tickers, dates, window):
         data = pd.concat([data, temp_data], ignore_index=True)
     return data
 
-'''
-tickers = ['MSFT', 'AAPL']
-dates = ['2023-08-13', '2022-07-18']
+# Read the original 8K information Excel file
+eight_k_df = pd.read_excel('8k.xlsx')
+eight_k_df['Items Filed'] = eight_k_df['Items Filed'].str.replace('Item ', '')
+eight_k_df['Items Filed'] = eight_k_df['Items Filed'].str.replace(' ', '')
+tickers = eight_k_df['Ticker'].values
+dates = eight_k_df['Filing Date'].values
 window = 10
-print(asyncio.run(get_price(tickers, dates, window)))
-'''
+result_df = asyncio.run(get_price(tickers, dates, window))
+
+# Merge the 8K information and stock price data into a new Excel file
+merged_df = pd.merge(eight_k_df, result_df, on=['Ticker', 'Filing Date'], how='left')
+merged_df['Filing Date'] = merged_df['Filing Date'].dt.date
+merged_df['Date'] = merged_df['Date'].dt.date
+# Save the integrated data to a new Excel file
+merged_df.to_csv('8k_with_prices.csv', index=False)
