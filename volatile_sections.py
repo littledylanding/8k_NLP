@@ -14,8 +14,17 @@ def print_rank(ranking):
 
 
 data = pd.read_csv('8k_with_prices.csv')
-data['Section'] = data['Section'].str.split(',')
-data = data.explode('Section', ignore_index=True)
+data = data.assign(Section=data['Section'].str.split(',')).explode('Section', ignore_index=True)
+
+data.drop_duplicates(inplace=True)
+data.dropna(subset=['Close'], inplace=True)
+
+data['Filing Date'] = pd.to_datetime(data['Filing Date'])
+data['Date'] = pd.to_datetime(data['Date'])
+
+grouped = data.groupby(['Ticker', 'Filing Date', 'Section'])
+data = grouped.filter(lambda x: len(x) >= 21).reset_index(drop=True)
+
 data['Section'] = data['Section'].str.split('.')
 lag = [1, 2, 5, 10]
 section = list(range(1, 10))

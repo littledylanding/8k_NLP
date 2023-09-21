@@ -7,17 +7,12 @@ import pandas_market_calendars as mcal
 
 def get_businessdays(target_date, k, exchange='NYSE'):
     calendar = mcal.get_calendar(exchange)
-
     target_date = pd.Timestamp(target_date)
-
-    start_date = target_date - pd.Timedelta(days=max(365, 2*k))  # 1 year before
-    end_date = target_date + pd.Timedelta(days=max(365, 2*k))  # 1 year after
+    start_date = target_date - pd.Timedelta(days=max(365, 2*k))
+    end_date = target_date + pd.Timedelta(days=max(365, 2*k))
     schedule = calendar.schedule(start_date=start_date, end_date=end_date)
-
     idx = schedule.index.get_loc(target_date, method='nearest')
-
     nearby_dates = schedule.iloc[idx - k:idx + k + 1].index.tolist()
-
     return min(nearby_dates), max(nearby_dates)
 
 
@@ -44,9 +39,10 @@ async def get_price(tickers, dates, window):
     return data
 
 # Read the original 8K information Excel file
-eight_k_df = pd.read_excel('8k.xlsx')
-eight_k_df['Items Filed'] = eight_k_df['Items Filed'].str.replace('Item ', '')
-eight_k_df['Items Filed'] = eight_k_df['Items Filed'].str.replace(' ', '')
+eight_k_df = pd.read_excel('FilingData.xlsx')
+eight_k_df['Filing Date'] = pd.to_datetime(eight_k_df['Filing Date'])
+eight_k_df['Section'] = eight_k_df['Section'].str.replace('Item ', '')
+eight_k_df['Section'] = eight_k_df['Section'].str.replace(' ', '')
 tickers = eight_k_df['Ticker'].values
 dates = eight_k_df['Filing Date'].values
 window = 10

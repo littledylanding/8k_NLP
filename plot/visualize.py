@@ -29,8 +29,18 @@ def plot_mean_ret(data, items):
     return
 
 
-data = pd.read_csv('C:\\Users\\jiaqi\\Desktop\\8k_NLP\\8k_with_prices.csv')
-data['Section'] = data['Section'].str.split(',')
-data = data.explode('Section', ignore_index=True)
-items = ['3.02', '8.01']
+data = pd.read_csv('8k_with_prices.csv')
+data = data.assign(Section=data['Section'].str.split(',')).explode('Section', ignore_index=True)
+
+data.drop_duplicates(inplace=True)
+data.dropna(subset=['Close'], inplace=True)
+
+data['Filing Date'] = pd.to_datetime(data['Filing Date'])
+data['Date'] = pd.to_datetime(data['Date'])
+
+grouped = data.groupby(['Ticker', 'Filing Date', 'Section'])
+data = grouped.filter(lambda x: len(x) >= 21).reset_index(drop=True)
+
+items = data['Section'].unique()
+items = [item for item in items if not isinstance(item, float) or not np.isnan(item)]
 plot_mean_ret(data, items)
