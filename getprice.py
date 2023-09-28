@@ -20,7 +20,7 @@ async def process_job(job, window):
     ticker, date = job
     start_date, end_date = get_businessdays(date, window)
     end_date = (end_date + timedelta(days=1)).strftime('%Y-%m-%d')
-    temp_data = yf.download(ticker, start=start_date, end=end_date)['Adj Close']
+    temp_data = yf.download(ticker, start=start_date, end=end_date, progress=False)['Adj Close']
     df = temp_data.reset_index()
     df.columns = ['Date', 'Close']
     df['Ticker'] = ticker
@@ -40,6 +40,7 @@ async def get_price(tickers, dates, window):
 
 # Read the original 8K information Excel file
 eight_k_df = pd.read_excel('FilingData.xlsx')
+eight_k_df.drop_duplicates(inplace=True)
 eight_k_df['Filing Date'] = pd.to_datetime(eight_k_df['Filing Date'])
 eight_k_df['Section'] = eight_k_df['Section'].str.replace('Item ', '')
 eight_k_df['Section'] = eight_k_df['Section'].str.replace(' ', '')
@@ -50,7 +51,9 @@ result_df = asyncio.run(get_price(tickers, dates, window))
 
 # Merge the 8K information and stock price data into a new Excel file
 merged_df = pd.merge(eight_k_df, result_df, on=['Ticker', 'Filing Date'], how='left')
+merged_df.dropna(subset=['Close'], inplace=True)
 merged_df['Filing Date'] = merged_df['Filing Date'].dt.date
 merged_df['Date'] = merged_df['Date'].dt.date
+merged_df = merged_df.groupby(['Ticker', 'Filing Date', 'Section']).filter(lambda x: len(x) >= 21).reset_index(drop=True)
 # Save the integrated data to a new Excel file
 merged_df.to_csv('8k_with_prices.csv', index=False)

@@ -1,4 +1,7 @@
 import pandas as pd
+import pandas_market_calendars as mcal
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 def get_businessdays(target_date, k, exchange='NYSE'):
@@ -13,23 +16,19 @@ def get_businessdays(target_date, k, exchange='NYSE'):
 
 
 def mark_rows_within_k_bdays(df, k):
-    items = [x for x in list(df.columns) if 'Item' in x ]
-    for company_col in df['Ticker'].unique().values:
-        for item_col in items:
-            new_feature_col = f"{item_col}_within_{k}_bdays"
-            df[new_feature_col] = 0
-
-            for _, row in df.iterrows():
-                company = row[company_col]
-                target_date = row[date_col]
-                start_date, end_date = get_businessdays(target_date, k)
-
-                # Check if the item was filed within k business days for the same company
-                condition = (df[company_col] == company) & (df[date_col] >= start_date) & (df[date_col] <= end_date) & (
-                            df[item_col] == 1)
-                if df[condition].shape[0] > 0:
-                    df.at[_, new_feature_col] = 1
-
+    items = [x for x in list(df.columns) if 'Item' in x]
+    for item_col in items:
+        print(item_col)
+        new_feature_col = f"{item_col}_within_{k}_bdays"
+        df[new_feature_col] = 0
+        for _, row in df.iterrows():
+            company = row['Ticker']
+            target_date = row['Filing Date']
+            start_date, end_date = get_businessdays(target_date, k)
+            condition = (df['Ticker'] == company) & (df['Filing Date'] >= start_date) & (df['Filing Date'] <= end_date) & (
+                        df[item_col] == 1)
+            if sum(condition) > 0:
+                df.at[_, new_feature_col] = 1
     return df
 
 
@@ -43,4 +42,15 @@ data_cleaned.drop(['Section', 'Items List'], axis=1, inplace=True)
 data_cleaned.sort_values(by=['Ticker', 'Filing Date'], inplace=True)
 data = mark_rows_within_k_bdays(data_cleaned, 20)
 
+item_cols = [col for col in data.columns if 'Item' in col and '_within_20_bdays' not in col]
+lagged_cols = [f"{col}_within_20_bdays" for col in item_cols]
 
+corr_matrix = data[item_cols + lagged_cols].corr().loc[item_cols, lagged_cols]
+
+plt.figure(figsize=(15, 12))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', linewidths=0.5, linecolor='white')
+plt.title("Correlation Heatmap of Items vs. Their Lagged Versions")
+plt.xticks(rotation=90)
+plt.yticks(rotation=0)
+plt.tight_layout()
+plt.show()
