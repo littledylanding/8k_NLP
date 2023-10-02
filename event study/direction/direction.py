@@ -28,7 +28,7 @@ data.dropna(subset=['Close'], inplace=True)
 
 data['Filing Date'] = pd.to_datetime(data['Filing Date'])
 data['Date'] = pd.to_datetime(data['Date'])
-
+data = data.sort_values(by=['Ticker', 'Filing Date'])
 grouped = data.groupby(['Ticker', 'Filing Date', 'Section'])
 data = grouped.filter(lambda x: len(x) >= 21).reset_index(drop=True)
 
