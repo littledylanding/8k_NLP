@@ -17,6 +17,7 @@ for i in range(l):
     for j in range(i + 1, l):
         item_j = items[j]
         res = np.zeros((4, 4))
+        num = np.zeros((2, 4))
         for company in Tickers:
             data = eight_k_df[eight_k_df['Ticker'] == company].dropna().sort_values(by=['Filing Date'])
             for t in range(len(data)-1):
@@ -39,10 +40,14 @@ for i in range(l):
                 else:
                     next_idx = 3
                 res[curr_idx, next_idx] += 1
+                num[0, curr_idx] += 1
+                num[1, next_idx] += 1
         row_sums = res.sum(axis=1).reshape(-1, 1)
         res /= row_sums
         temp_df = pd.DataFrame(res)
-        temp_df.index = temp_df.columns = [item_i, item_j, 'Both', 'Other']
+        temp_df = pd.concat([temp_df, pd.DataFrame(num[0, :])], axis=1, ignore_index=True)
+        temp_df = pd.concat([temp_df, pd.DataFrame(list(num[1, :])+[np.nan]).transpose()], ignore_index=True)
+        temp_df.index = temp_df.columns = [item_i, item_j, 'Both', 'Other', 'Frequency']
         DF.append(temp_df)
 with pd.ExcelWriter('Markov.xlsx', engine='openpyxl') as writer:
     for df in DF:
