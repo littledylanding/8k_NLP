@@ -4,31 +4,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import pandas as pd
 
-df = pd.read_excel("C:\\Users\\jiaqi\\Desktop\\8k_NLP\\FilingData.xlsx")
-all_items = sorted(df['Section'].str.split(', ', expand=True).stack().unique())
-for item in all_items:
-    df[item] = df['Section'].str.contains(item, na=False).astype(int)
-df.sort_values(by=['Ticker', 'Filing Date'], inplace=True)
-feature_cols = df.columns.difference(['Ticker', 'Filing Date', 'Section'])
+df = pd.read_csv("filtered_data.csv")
+y_col = [x for x in df.columns if 'LSM' not in x]
+y_col.remove('Ticker')
+y_col.remove('Filing Date')
+x_col = [x for x in df.columns if 'LSM' in x]
+y = df[y_col]
+X = df[x_col]
+y = y.loc[:, (y.sum() != 0)]
+X = X.loc[:, (X.sum() != 0)]
 
-X = pd.DataFrame()
-y = pd.DataFrame()
-
-for ticker in df['Ticker'].unique():
-    company_data = df.loc[df['Ticker'] == ticker, feature_cols]
-
-    if len(company_data) > 2:
-        lag1 = company_data.iloc[:-2].reset_index(drop=True)
-        lag2 = company_data.iloc[1:-1].reset_index(drop=True)
-
-        combined_lags = pd.concat([lag1, lag2], axis=1, ignore_index=True)
-
-        X = pd.concat([X, combined_lags], ignore_index=True)
-
-        y = pd.concat([y, company_data.iloc[2:]], ignore_index=True)
-
-new_col_names = [f"{col}_lag1" for col in feature_cols] + [f"{col}_lag2" for col in feature_cols]
-X.columns = new_col_names
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
 rf = RandomForestClassifier(n_estimators=1000)

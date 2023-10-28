@@ -2,36 +2,38 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+
 cwd = os.getcwd()
 
 
-def plot_mean_ret(data, items, up=0.75, down=0.25):
+def plot_mean_cum_ret(data, items, up=0.75, down=0.25):
     for item in items:
-        temp_data = data[data['Section'] == item].groupby(['Ticker', 'Filing Date'])['Close']
-        pct_changes = temp_data.apply(lambda x: x.pct_change().dropna())
-        median = []
-        upper = []
-        lower = []
+        pct_changes = data[data['Items'] == item].groupby(['Ticker', 'Filing Date'])[['Ticker', 'Filing Date', 'Ret', 'Date']].apply(lambda x: x.iloc[9:]).drop_duplicates()
+        median = [0]
+        upper = [0]
+        lower = [0]
         max_len = max(pct_changes.groupby(level=[0, 1]).apply(len))
-        mid = max_len // 2
-        x = np.array(range(2, max_len + 2)) - mid
-        for i in range(max_len):
-            nth_values = pct_changes.groupby(level=[0, 1]).apply(lambda x: x.iloc[i] if i < len(x) else np.nan)
+        mid = max_len // 2 - 1
+        x = np.array(range(mid + 2))
+        mean = [0]
+        for i in range(mid+1, max_len):
+            nth_values = pct_changes.apply(
+                lambda group: group.cumsum().iloc[i] if len(group) > i else np.nan)
             median.append(nth_values.median())
             upper.append(nth_values.quantile(q=up, interpolation='nearest'))
             lower.append(nth_values.quantile(q=down, interpolation='nearest'))
+            mean.append(nth_values.mean())
 
-        plt.plot(x, median, label='Median Daily Return', linestyle='-', linewidth=1.5)
-        plt.plot(x, upper, label='{q} Quantile Daily Return'.format(q=int(up*100)), linestyle='-', linewidth=1.5)
-        plt.plot(x, lower, label='{q} Quantile Daily Return'.format(q=int(down*100)), linestyle='-', linewidth=1.5)
-
-        plt.axvline(0, color='grey', linestyle='--', linewidth=0.5)  # Vertical line at middle x-point
-        plt.scatter(0, median[mid-2], color='red')  # Mark the middle x-point in red
+        plt.plot(x, median, label='Median Cumulative Return', linestyle='-', linewidth=1.5)
+        plt.plot(x, upper, label='{q} Quantile Cumulative Return'.format(q=int(up * 100)), linestyle='-', linewidth=1.5)
+        plt.plot(x, lower, label='{q} Quantile Cumulative Return'.format(q=int(down * 100)), linestyle='-',
+                 linewidth=1.5)
+        plt.plot(x, mean, label='Mean Cumulative Return', linestyle='-', linewidth=1.5)
         plt.xticks(x, x)
         plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         plt.xlabel('Time', fontsize=14)
         plt.ylabel('Return', fontsize=14)
-        plt.title('Daily Quantile Return of Item {}'.format(item), fontsize=16)
+        plt.title('Cumulative Return of Item {}'.format(item), fontsize=16)
         plt.grid(True, which='both', linestyle='--', linewidth=0.5)
         plt.tight_layout()
         plt.savefig('{}.jpg'.format(cwd + '/figures/' + item))
@@ -40,17 +42,13 @@ def plot_mean_ret(data, items, up=0.75, down=0.25):
 
 
 data = pd.read_csv('8k_with_prices.csv')
-data = data.assign(Section=data['Section'].str.split(',')).explode('Section', ignore_index=True)
-
-data.drop_duplicates(inplace=True)
-data.dropna(subset=['Close'], inplace=True)
-
 data['Filing Date'] = pd.to_datetime(data['Filing Date'])
 data['Date'] = pd.to_datetime(data['Date'])
+grouped = data.groupby(['Ticker', 'Filing Date']).apply(lambda x: max(x['Items'].apply(lambda x: len(x))))
 
-grouped = data.groupby(['Ticker', 'Filing Date', 'Section'])
-data = grouped.filter(lambda x: len(x) >= 21).reset_index(drop=True)
+data = data.assign(Items=data['Items'].str.split(',')).explode('Items', ignore_index=True)
+data.drop_duplicates(inplace=True)
 
-items = data['Section'].unique()
+items = data['Items'].unique()
 items = [item for item in items if not isinstance(item, float) or not np.isnan(item)]
-plot_mean_ret(data, items)
+plot_mean_cum_ret(data, items)

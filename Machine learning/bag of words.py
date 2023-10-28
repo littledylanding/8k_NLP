@@ -29,7 +29,6 @@ dictionary = pd.read_csv('Loughran-McDonald_MasterDictionary_1993-2021.csv', ind
 data = pd.read_csv('df_item.csv')
 data['tokenized'] = data['Content'].apply(preprocess_text)
 categories = dictionary.columns[6:13]
-data.to_csv('tokenized.csv')
 category_counts = data['tokenized'].apply(count_categories)
 data = pd.concat([data, category_counts], axis=1)
 data.to_csv('bagofwords.csv')
