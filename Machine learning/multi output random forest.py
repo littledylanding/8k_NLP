@@ -14,7 +14,7 @@ X = df[x_col]
 y = y.loc[:, (y.sum() != 0)]
 X = X.loc[:, (X.sum() != 0)]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=19)
 
 rf = RandomForestClassifier(n_estimators=1000)
 

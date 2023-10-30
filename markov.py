@@ -1,23 +1,25 @@
 import pandas as pd
 import numpy as np
 
-eight_k_df = pd.read_excel('FilingData.xlsx')
+eight_k_df = pd.read_csv('FilingData.csv')
 eight_k_df.drop_duplicates(inplace=True)
 eight_k_df['Filing Date'] = pd.to_datetime(eight_k_df['Filing Date'])
-eight_k_df['Section'] = eight_k_df['Section'].str.replace('Item ', '')
-eight_k_df['Section'] = eight_k_df['Section'].str.replace(' ', '')
-data = eight_k_df.assign(Section=eight_k_df['Section'].str.split(',')).explode('Section', ignore_index=True)
-items = data['Section'].unique()
+eight_k_df['Items'] = eight_k_df['Items'].str.replace(' ', '')
+eight_k_df = eight_k_df.groupby(['Ticker', 'Filing Date']).agg({'Items': lambda x: ','.join(x)}).reset_index()
+data = eight_k_df.assign(Items=eight_k_df['Items'].str.split(',')).explode('Items', ignore_index=True)
+items = list(data['Items'].unique())
+err = ['2.02101', '2.02104', '7.01104']
+for x in err:
+    items.remove(x)
 items = sorted([item for item in items if not isinstance(item, float) or not np.isnan(item)])
 l = len(items)
 Tickers = data['Ticker'].unique()
 DF = []
+res = np.zeros((l, l))
 for i in range(l):
     item_i = items[i]
     for j in range(i + 1, l):
         item_j = items[j]
-        res = np.zeros((4, 4))
-        num = np.zeros((2, 4))
         for company in Tickers:
             data = eight_k_df[eight_k_df['Ticker'] == company].dropna().sort_values(by=['Filing Date'])
             for t in range(len(data)-1):
