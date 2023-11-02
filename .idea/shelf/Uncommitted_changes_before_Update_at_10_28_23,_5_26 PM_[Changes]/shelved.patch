@@ -1,0 +1,119 @@
+Index: plot/visualize.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport os\ncwd = os.getcwd()\n\n\ndef plot_mean_ret(data, items, up=0.75, down=0.25):\n    for item in items:\n        temp_data = data[data['Section'] == item].groupby(['Ticker', 'Filing Date'])['Close']\n        pct_changes = temp_data.apply(lambda x: x.pct_change().dropna())\n        median = []\n        upper = []\n        lower = []\n        max_len = max(pct_changes.groupby(level=[0, 1]).apply(len))\n        mid = max_len // 2\n        x = np.array(range(2, max_len + 2)) - mid\n        for i in range(max_len):\n            nth_values = pct_changes.groupby(level=[0, 1]).apply(lambda x: x.iloc[i] if i < len(x) else np.nan)\n            median.append(nth_values.median())\n            upper.append(nth_values.quantile(q=up, interpolation='nearest'))\n            lower.append(nth_values.quantile(q=down, interpolation='nearest'))\n\n        plt.plot(x, median, label='Median Daily Return', linestyle='-', linewidth=1.5)\n        plt.plot(x, upper, label='{q} Quantile Daily Return'.format(q=int(up*100)), linestyle='-', linewidth=1.5)\n        plt.plot(x, lower, label='{q} Quantile Daily Return'.format(q=int(down*100)), linestyle='-', linewidth=1.5)\n\n        plt.axvline(0, color='grey', linestyle='--', linewidth=0.5)  # Vertical line at middle x-point\n        plt.scatter(0, median[mid-2], color='red')  # Mark the middle x-point in red\n        plt.xticks(x, x)\n        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))\n        plt.xlabel('Time', fontsize=14)\n        plt.ylabel('Return', fontsize=14)\n        plt.title('Daily Quantile Return of Item {}'.format(item), fontsize=16)\n        plt.grid(True, which='both', linestyle='--', linewidth=0.5)\n        plt.tight_layout()\n        plt.savefig('{}.jpg'.format(cwd + '/figures/' + item))\n        plt.close()\n    return\n\n\ndata = pd.read_csv('8k_with_prices.csv')\ndata = data.assign(Section=data['Section'].str.split(',')).explode('Section', ignore_index=True)\n\ndata.drop_duplicates(inplace=True)\ndata.dropna(subset=['Close'], inplace=True)\n\ndata['Filing Date'] = pd.to_datetime(data['Filing Date'])\ndata['Date'] = pd.to_datetime(data['Date'])\n\ngrouped = data.groupby(['Ticker', 'Filing Date', 'Section'])\ndata = grouped.filter(lambda x: len(x) >= 21).reset_index(drop=True)\n\nitems = data['Section'].unique()\nitems = [item for item in items if not isinstance(item, float) or not np.isnan(item)]\nplot_mean_ret(data, items)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/plot/visualize.py b/plot/visualize.py
+--- a/plot/visualize.py	(revision 34fc7a0592137795cafb46455f688b0a07890250)
++++ b/plot/visualize.py	(date 1697578498453)
+@@ -8,7 +8,7 @@
+ def plot_mean_ret(data, items, up=0.75, down=0.25):
+     for item in items:
+         temp_data = data[data['Section'] == item].groupby(['Ticker', 'Filing Date'])['Close']
+-        pct_changes = temp_data.apply(lambda x: x.pct_change().dropna())
++        pct_changes = temp_data.apply(lambda x: x.pct_change().fillna(0))
+         median = []
+         upper = []
+         lower = []
+@@ -51,6 +51,5 @@
+ grouped = data.groupby(['Ticker', 'Filing Date', 'Section'])
+ data = grouped.filter(lambda x: len(x) >= 21).reset_index(drop=True)
+ 
+-items = data['Section'].unique()
+-items = [item for item in items if not isinstance(item, float) or not np.isnan(item)]
++items = ['1.03', '4.02', '2.04', '3.01', '5.01']
+ plot_mean_ret(data, items)
+Index: Machine learning/bag of words.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pandas as pd\nimport re\nfrom nltk.corpus import stopwords\nfrom nltk.tokenize import word_tokenize\n\nstop_words = set(stopwords.words('english'))\n\n\ndef preprocess_text(text):\n    words = word_tokenize(text)\n    words = [word for word in words if word.lower() not in stop_words]\n    words = [re.sub(r'([a-zA-Z])(\\d)', r'\\1 \\2', word) for word in words]\n    words = [re.sub(r'(\\d)([a-zA-Z])', r'\\1 \\2', word) for word in words]\n    return words\n\n\ndef count_categories(words):\n    category_counts = {category: 0 for category in categories}\n    for word in words:\n        if word.upper() in dictionary.index:\n            word_data = dictionary[dictionary.index == word.upper()]\n            for category in categories:\n                if word_data[category].values[0]:\n                    category_counts[category] += 1\n    return pd.Series(category_counts)\n\n\ndictionary = pd.read_csv('Loughran-McDonald_MasterDictionary_1993-2021.csv', index_col=0)\ndata = pd.read_csv('df_item.csv')\ndata['tokenized'] = data['Content'].apply(preprocess_text)\ncategories = dictionary.columns[6:13]\ndata.to_csv('tokenized.csv')\ncategory_counts = data['tokenized'].apply(count_categories)\ndata = pd.concat([data, category_counts], axis=1)\ndata.to_csv('bagofwords.csv')
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Machine learning/bag of words.py b/Machine learning/bag of words.py
+--- a/Machine learning/bag of words.py	(revision 34fc7a0592137795cafb46455f688b0a07890250)
++++ b/Machine learning/bag of words.py	(date 1697569485866)
+@@ -32,4 +32,4 @@
+ data.to_csv('tokenized.csv')
+ category_counts = data['tokenized'].apply(count_categories)
+ data = pd.concat([data, category_counts], axis=1)
+-data.to_csv('bagofwords.csv')
+\ No newline at end of file
++data.to_csv('bagofwords.csv')
+Index: getprice/getprice_bbg.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/getprice/getprice_bbg.py b/getprice/getprice_bbg.py
+new file mode 100644
+--- /dev/null	(date 1697923730179)
++++ b/getprice/getprice_bbg.py	(date 1697923730179)
+@@ -0,0 +1,65 @@
++import pandas as pd
++import pandas_market_calendars as mcal
++from datetime import timedelta
++from xbbg import blp
++from concurrent.futures import ThreadPoolExecutor
++import asyncio
++
++
++def get_businessdays(target_date, k, exchange='NYSE'):
++    calendar = mcal.get_calendar(exchange)
++    target_date = pd.Timestamp(target_date)
++    start_date = target_date - pd.Timedelta(days=max(365, 2 * k))
++    end_date = target_date + pd.Timedelta(days=max(365, 2 * k))
++    schedule = calendar.schedule(start_date=start_date, end_date=end_date)
++    idx = schedule.index.get_loc(target_date, method='nearest')
++    nearby_dates = schedule.iloc[idx - k:idx + k + 1].index.tolist()
++    return min(nearby_dates), max(nearby_dates)
++
++
++async def process_equity(equity_data, window):
++    ticker, filing_dates = equity_data
++    filing_dates = sorted(filing_dates)
++    start_date, _ = get_businessdays(filing_dates[0], window)
++    _, end_date = get_businessdays(filing_dates[-1], window)
++    end_date = (end_date + timedelta(days=1)).strftime('%Y-%m-%d')
++    bloomberg_ticker = f'{ticker} US Equity'
++    loop = asyncio.get_event_loop()
++    with ThreadPoolExecutor() as executor:
++        temp_data = await loop.run_in_executor(
++            executor,
++            blp.bdh,
++            bloomberg_ticker,
++            ['Px_Last'],
++            start_date.strftime('%Y-%m-%d'),
++            end_date
++        )
++    temp_data = temp_data.droplevel(0, axis=1).reset_index()
++    temp_data.columns = ['Date', 'Close']
++    temp_data['Ticker'] = ticker
++    for filing_date in filing_dates:
++        temp_data[f'Filing Date {filing_date}'] = filing_date
++    return temp_data
++
++
++async def get_price(tickers, dates, window):
++    equity_data = [(ticker, dates[tickers == ticker]) for ticker in set(tickers)]
++    tasks = [asyncio.create_task(process_equity(data, window)) for data in equity_data]
++    results = await asyncio.gather(*tasks)
++    data = pd.DataFrame([])
++    for temp_data in results:
++        data = pd.concat([data, temp_data], ignore_index=True)
++    return data
++
++
++# Reading the original 8K information Excel file
++eight_k_df = pd.read_excel('FilingData.xlsx')
++eight_k_df.drop_duplicates(inplace=True)
++eight_k_df['Filing Date'] = pd.to_datetime(eight_k_df['Filing Date'])
++tickers = eight_k_df['Ticker'].values
++dates = eight_k_df['Filing Date'].values
++window = 10
++result_df = asyncio.run(get_price(tickers, dates, window))
++
++# Saving the data to a new CSV file
++result_df.to_csv('8k_with_prices.csv', index=False)

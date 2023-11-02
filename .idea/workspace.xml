@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="46bdaeb6-d3e6-41fa-82ef-fac1d88e8a2e" name="Changes" comment="update">
+      <change afterPath="$PROJECT_DIR$/Machine learning/Items/Data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Machine learning/Items/ylabels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_21_23,_11_24_AM_[Changes]/Truth.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/8k.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FilingData.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/Final.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/Loughran-McDonald_MasterDictionary_1993-2021.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/Pricein&amp;out.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Machine learning/Direction/Pricein&amp;out.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/bag of words.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/bagofwords.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/bagofwords.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/df_item.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/filtered_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/merge_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine learning/Direction/merge_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/multi class SVM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine learning/Direction/multi class SVM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/multi output random forest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine learning/Items/multi output random forest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine learning/multivariate logistic regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine learning/Items/multivariate logistic regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/direction/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/direction/Truth.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/direction/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/direction/direction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/direction/zValue.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/vol/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/vol/volatile.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/vol/volatile_items.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/event study - new data/vol/volatile_sections.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot1.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot1.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot1.04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot2.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot2.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot2.03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot2.04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot2.05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot2.06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot3.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot3.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot3.03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot4.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot4.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot5.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot5.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot5.03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot5.04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot5.07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot7.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot8.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/plot9.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/New Data/new data plot/visualize.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SP400_FilingData_cap.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled(1).ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/corr map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/corr_map.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/10 worst drawdown.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/APPS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/ARLO.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/GTLS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/HAE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/MDD result.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/MDD_plot.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/NEW MDD result.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/OMI.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/RCM.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/SHC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/SLCA.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/UNFI.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/VTLE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/individual top 10.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/MDD/mdd.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/FilingData.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/Truth.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/df_item_full_sp600.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/df_with_return_sp600.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/direction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/filtered_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/merge_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/new_df_with_return_sp600.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/new_df_with_return_sp600.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/direction/zValue.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/markov/All items markov.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/markov/Bad items markov.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/markov/FilingData.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/markov/markov.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/vol/volatile.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event study/vol/volatile_sections.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/8k_with_prices_20days_back.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/FilingData.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/df_item_sp600_daily_return.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/getprice_back.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/getprice_bbg.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/getprice_frontback.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/getprice_marketneutral.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getprice/merge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/NewsCATS_A_News_Categorization_and_Trading_System.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/8k_with_prices.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/drop.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/1.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/1.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/1.03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/1.04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/2.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/2.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/2.03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/2.04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/2.05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/2.06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/3.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/3.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/3.03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/4.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/4.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/5.08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/6.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/7.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/8.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/9.01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/figures/9.09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/visualize.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;littledylanding&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a9228d1f-a75c-4609-86b9-752b735f3fcb" />
+        <option name="url" value="https://github.com/littledylanding/8k_NLP.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2VOXHWeNtRffxo7KpLDvYOvNeSH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jiaqiding/Desktop/8k_NLP&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/getprice" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.ylabels">
+    <configuration name="direction" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="8k_NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/event study/direction" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/event study/direction/direction.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="markov" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="8k_NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/event study/markov" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/event study/markov/markov.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mdd" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="8k_NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/event study/MDD" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/event study/MDD/mdd.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="visualize" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="8k_NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/visualize.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ylabels" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="8k_NLP" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine learning/Items" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine learning/Items/ylabels.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.ylabels" />
+      <item itemvalue="Python.markov" />
+      <item itemvalue="Python.direction" />
+      <item itemvalue="Python.visualize" />
+      <item itemvalue="Python.mdd" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.ylabels" />
+        <item itemvalue="Python.markov" />
+        <item itemvalue="Python.mdd" />
+        <item itemvalue="Python.direction" />
+        <item itemvalue="Python.visualize" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="46bdaeb6-d3e6-41fa-82ef-fac1d88e8a2e" name="Changes" comment="" />
+      <created>1694708013349</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694708013349</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add visualize function">
+      <option name="closed" value="true" />
+      <created>1695172131919</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695172131919</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix bugs">
+      <option name="closed" value="true" />
+      <created>1695260735998</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695260735998</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add correlation map">
+      <option name="closed" value="true" />
+      <created>1695846160143</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1695846160143</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update">
+      <option name="closed" value="true" />
+      <created>1696984781199</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696984781199</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update">
+      <option name="closed" value="true" />
+      <created>1696986082539</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696986082539</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update">
+      <option name="closed" value="true" />
+      <created>1697390847474</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697390847475</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update">
+      <option name="closed" value="true" />
+      <created>1697498089885</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697498089885</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update">
+      <option name="closed" value="true" />
+      <created>1698693015580</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698693015580</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Add visualize function" />
+    <MESSAGE value="Fix bugs" />
+    <MESSAGE value="Add correlation map" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/plot/visualize.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
