@@ -3,8 +3,9 @@ import numpy as np
 
 
 def mdd(data):
-    Roll_Max = data['Close'].iloc[9]
-    Daily_Drawdown = data['Close'].iloc[9:] / Roll_Max - 1
+    mid = len(data) // 2
+    Roll_Max = data['Close'].iloc[mid-2:mid+3].cummax()
+    Daily_Drawdown = data['Close'].iloc[mid-2:mid+3]/ Roll_Max - 1
     return Daily_Drawdown.min()
 
 
