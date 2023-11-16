@@ -2,30 +2,29 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from sklearn.multioutput import MultiOutputClassifier
 
-df = pd.read_csv("filtered_data.csv")
-y_col = [x for x in df.columns if 'LSM' not in x]
-y_col.remove('Ticker')
-y_col.remove('Filing Date')
-x_col = [x for x in df.columns if 'LSM' in x]
-y = df[y_col]
+
+def drop_first_last(group):
+    return group.iloc[1:-1]
+
+
+df = pd.read_csv("Data.csv")
+df = df.sort_values(by=['Ticker'])
+result = df.groupby(['Ticker']).apply(drop_first_last)
+df = result.reset_index(drop=True)
+x_col = list(df.columns)
+err = ['Ticker', 'Market', 'y', 'Ret', 'Items']
+for i in err:
+    x_col.remove(i)
+y = df['y']
 X = df[x_col]
-y = y.loc[:, (y.sum() != 0)]
-X = X.loc[:, (X.sum() != 0)]
-
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
-model = LogisticRegression(multi_class='multinomial', solver='lbfgs', max_iter=10000)
+model = LogisticRegression(max_iter=10000, random_state=42)
+model.fit(X_train, y_train)
 
-multi_target_logistic = MultiOutputClassifier(model, n_jobs=-1)
+y_pred = model.predict(X_test)
 
-multi_target_logistic.fit(X_train, y_train)
-
-y_pred = multi_target_logistic.predict(X_test)
-
-for i, col in enumerate(y.columns):
-    print(f"Classification Report for {col}:\n")
-    print(classification_report(y_test.iloc[:, i], y_pred[:, i]))
-    print("\n")
+print("Classification Report:\n")
+print(classification_report(y_test, y_pred))
