@@ -10,7 +10,7 @@ def plot_mean_cum_ret(data, items, up=0.75, down=0.25):
     data.sort_values(['Ticker', 'Filing Date', 'Date'])
     for item in items:
         print(item)
-        grouped_data = data[data['Items'] == item].groupby(['Ticker', 'Filing Date'])[['Ret']]
+        grouped_data = data[data['Items'] == item].groupby(['Accession Number'])[['Ret']]
 
         max_len = max(grouped_data.apply(len))
         mid = max_len // 2
@@ -57,15 +57,21 @@ def plot_mean_cum_ret(data, items, up=0.75, down=0.25):
     return
 
 
-data = pd.read_csv('8k_with_prices.csv')
+window = 10
+data = pd.read_pickle('df_item_sp600_daily_return_1106.pkl')
+data = data.assign(Items=data['Items'].str.split(', ')).explode('Items', ignore_index=True)
+
+data.drop_duplicates(inplace=True)
+data.dropna(subset=['Adj Close'], inplace=True)
+data = data.groupby(['Items', 'Accession Number']).filter(lambda x: len(x) == 2 * window + 1).reset_index(
+    drop=True)
 data['Filing Date'] = pd.to_datetime(data['Filing Date'])
 data['Date'] = pd.to_datetime(data['Date'])
-data = data.assign(Items=data['Items'].str.split(',')).explode('Items', ignore_index=True)
-data.drop_duplicates(inplace=True)
 
 items = data['Items'].unique()
 items = sorted([item for item in items if not isinstance(item, float) or not np.isnan(item)])
 err = ['2.02101', '2.02104', '7.01104']
 for x in err:
-    items.remove(x)
+    if x in items:
+        items.remove(x)
 plot_mean_cum_ret(data, items)
