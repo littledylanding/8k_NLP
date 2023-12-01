@@ -11,22 +11,26 @@ def plot_mean_cum_ret(data):
 
     for (ticker, filing_date), group in grouped_data:
         color = next(colors)  # Get the next color from the cycle
+        if color == 'red':
+            print(ticker)
         group = group.reset_index(drop=True)
         mid = group[group['Date'] == filing_date].index[0]
         x = np.array(range(len(group)))
         for part in [0, 1]:
             if part == 0:
-                slice_indices = slice(None, 5)
-                x_values = x[:mid]
+                slice_indices = slice(None, 6)
+                x_values = x[:mid+1]
+                cum_ret = (group.iloc[slice_indices]['Adj Close'] - group.iloc[slice_indices]['Adj Close'].iloc[-1]) / group.iloc[slice_indices]['Adj Close'].iloc[-1]
             else:
-                slice_indices = slice(4, None)
-                x_values = x[mid - 1:]
-            cum_ret = (group.iloc[slice_indices]['Ret'][1:len(x_values)] + 1).cumprod() - 1
-            plt.plot(x_values, [0] + list(np.squeeze(cum_ret.values)),linestyle='-', linewidth=1.5, color=color)
-    plt.axvline(x=4, color='c', label='Day before Fling Date')
+                slice_indices = slice(5, None)
+                x_values = x[mid:]
+                cum_ret = (group.iloc[slice_indices]['Adj Close'] - group.iloc[slice_indices]['Adj Close'].iloc[0]) / group.iloc[slice_indices]['Adj Close'].iloc[0]
+            plt.plot(x_values, list(np.squeeze(cum_ret.values)),linestyle='-', linewidth=1.5, color=color)
+    plt.axvline(x=5, color='c', label='Filing Date')
     plt.xlabel('Time', fontsize=14)
     plt.ylabel('Return', fontsize=14)
     plt.title(f'Cumulative Return', fontsize=16)
+    plt.legend()
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     plt.tight_layout()
     plt.savefig('worst')
