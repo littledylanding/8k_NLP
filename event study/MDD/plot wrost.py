@@ -11,8 +11,6 @@ def plot_mean_cum_ret(data):
 
     for (ticker, filing_date), group in grouped_data:
         color = next(colors)  # Get the next color from the cycle
-        if color == 'red':
-            print(ticker)
         group = group.reset_index(drop=True)
         mid = group[group['Date'] == filing_date].index[0]
         x = np.array(range(len(group)))

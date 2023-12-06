@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 
 
 def mdd(data):
-    mid = len(data) // 2
-    return data['Ret'].iloc[mid:].std()
+    return data['Ret'].std()
 
 
 window = 5

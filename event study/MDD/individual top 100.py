@@ -11,9 +11,9 @@ def calculate_std_diff(data):
 
 def mdd(data):
     mid = len(data) // 2
-    Roll_Max = data['Adj Close'].iloc[mid - 2:mid + 3].cummax()
-    Daily_Drawdown = data['Adj Close'].iloc[mid - 2:mid + 3] / Roll_Max - 1
-    return Daily_Drawdown.min()
+    before = data['Adj Close'].iloc[:mid].mean()
+    after = data['Adj Close'].iloc[mid+1:].mean()
+    return (after - before) / before
 
 
 window = 5

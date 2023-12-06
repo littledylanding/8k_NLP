@@ -16,14 +16,15 @@ def plot_mean_cum_ret(data):
         x = np.array(range(len(group)))
         for part in [0, 1]:
             if part == 0:
-                slice_indices = slice(None, 5)
-                x_values = x[:mid]
+                slice_indices = slice(None, 6)
+                x_values = x[:mid+1]
+                cum_ret = (group.iloc[slice_indices]['Adj Close'] - group.iloc[slice_indices]['Adj Close'].iloc[-1]) / group.iloc[slice_indices]['Adj Close'].iloc[-1]
             else:
-                slice_indices = slice(4, None)
-                x_values = x[mid - 1:]
-            cum_ret = (group.iloc[slice_indices]['Ret'][1:len(x_values)] + 1).cumprod() - 1
-            plt.plot(x_values, [0] + list(np.squeeze(cum_ret.values)),linestyle='-', linewidth=1.5, color=color)
-    plt.axvline(x=4, color='c', label='Day before Fling Date')
+                slice_indices = slice(5, None)
+                x_values = x[mid:]
+                cum_ret = (group.iloc[slice_indices]['Adj Close'] - group.iloc[slice_indices]['Adj Close'].iloc[0]) / group.iloc[slice_indices]['Adj Close'].iloc[0]
+            plt.plot(x_values, list(np.squeeze(cum_ret.values)),linestyle='-', linewidth=1.5, color=color)
+    plt.axvline(x=5, color='c', label='Fling Date')
     plt.xlabel('Time', fontsize=14)
     plt.ylabel('Return', fontsize=14)
     plt.title(f'Cumulative Return', fontsize=16)
